@@ -23,6 +23,9 @@ interface CaptionOverlayProps {
   highlightColor?: string;
   backgroundColor?: string;
   fontFamily?: string;
+  // Distance from the bottom edge in px — raise for lower-third placement
+  // that clears platform UI (Shorts/Reels action rail)
+  bottomPadding?: number;
 }
 
 interface CaptionPage {
@@ -52,7 +55,8 @@ const PageRenderer: React.FC<{
   highlightColor: string;
   backgroundColor: string;
   fontFamily: string;
-}> = ({ page, fontSize, color, highlightColor, backgroundColor, fontFamily }) => {
+  bottomPadding: number;
+}> = ({ page, fontSize, color, highlightColor, backgroundColor, fontFamily, bottomPadding }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -70,7 +74,7 @@ const PageRenderer: React.FC<{
       style={{
         justifyContent: "flex-end",
         alignItems: "center",
-        paddingBottom: 80,
+        paddingBottom: bottomPadding,
       }}
     >
       <div
@@ -125,6 +129,7 @@ export const CaptionOverlay: React.FC<CaptionOverlayProps> = ({
   highlightColor = "#22D3EE",
   backgroundColor = "rgba(15, 23, 42, 0.75)",
   fontFamily = "Space Grotesk, Inter, system-ui, sans-serif",
+  bottomPadding = 80,
 }) => {
   const { fps } = useVideoConfig();
   const pages = buildPages(words, wordsPerPage);
@@ -148,6 +153,7 @@ export const CaptionOverlay: React.FC<CaptionOverlayProps> = ({
               highlightColor={highlightColor}
               backgroundColor={backgroundColor}
               fontFamily={fontFamily}
+              bottomPadding={bottomPadding}
             />
           </Sequence>
         );

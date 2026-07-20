@@ -315,6 +315,10 @@ export interface ExplainerProps {
   cuts: Cut[];
   overlays?: Overlay[];
   captions?: WordCaption[];
+  // Optional word-level caption styling — defaults preserve legacy look
+  captionFontSize?: number;
+  captionWordsPerPage?: number;
+  captionBottomPadding?: number;
   audio?: AudioConfig;
 }
 
@@ -821,8 +825,9 @@ export const Explainer: React.FC<ExplainerProps> = (props) => {
       {captions && captions.length > 0 && (
         <CaptionOverlay
           words={captions}
-          wordsPerPage={6}
-          fontSize={42}
+          wordsPerPage={props.captionWordsPerPage ?? 6}
+          fontSize={props.captionFontSize ?? 42}
+          bottomPadding={props.captionBottomPadding ?? 80}
           highlightColor={theme.captionHighlightColor}
           backgroundColor={theme.captionBackgroundColor}
         />
