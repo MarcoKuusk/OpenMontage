@@ -103,6 +103,25 @@ export const THEMES: Record<string, ThemeConfig> = {
     captionHighlightColor: "#FFB347",
     captionBackgroundColor: "rgba(10, 10, 26, 0.8)",
   },
+  // Custom channel identity for the "AI leverage" faceless channel.
+  // Registered here so resolveTheme() returns it deterministically for
+  // playbook="dark-leverage" (mirrors styles/custom/dark-leverage.yaml).
+  "dark-leverage": {
+    primaryColor: "#00E5A0",
+    accentColor: "#F59E0B",
+    backgroundColor: "#0B0E14",
+    surfaceColor: "#141A24",
+    textColor: "#F2F5F7",
+    mutedTextColor: "#64748B",
+    headingFont: "Space Grotesk",
+    bodyFont: "Inter",
+    monoFont: "JetBrains Mono",
+    chartColors: ["#00E5A0", "#F59E0B", "#38BDF8", "#EF4444", "#A78BFA", "#F472B6"],
+    springConfig: { damping: 14, stiffness: 90, mass: 1 },
+    transitionDuration: 0.35,
+    captionHighlightColor: "#00E5A0",
+    captionBackgroundColor: "rgba(11, 14, 20, 0.85)",
+  },
 };
 
 // Default theme when none is specified — uses the existing dark style for backwards compatibility
